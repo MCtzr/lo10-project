@@ -1,12 +1,15 @@
 import './App.css';
-import Nav from './views/navbar';
+import Header from './views/Header';
+import Navbar from './views/navbar';
+import Musees from './services/Musees';
 
 function App() {
   return (
     <div className="App">
+      <Header />
+      <Navbar />
       <div>
-        <h1>LO10 Project</h1>
-        <Nav />
+        <Musees />
       </div>
     </div>
   );
