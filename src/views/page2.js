@@ -1,4 +1,4 @@
-const Page2 = () => {
+function Page2() {
     return (
         <>
             <p>Je suis la page2</p>

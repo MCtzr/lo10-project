@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './views/Header';
 import Navbar from './views/navbar';
-import Musees from './services/Musees';
+
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Header />
       <Navbar />
       <div>
-        <Musees />
+
       </div>
     </div>
   );

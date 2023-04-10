@@ -1,7 +1,9 @@
-const Page1 = () => {
+import Musees from '../services/Musees';
+
+function Page1() {
     return (
         <>
-            <p>Je suis la page1</p>
+            <Musees />
         </>
     )
 }
