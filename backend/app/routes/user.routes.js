@@ -6,7 +6,7 @@ module.exports = app => {
     var router = asyncify(express.Router());
 
     //Create a person
-    router.post("/usersC", users.create);
+    router.post("/users", users.create);
 
     //Retrieve all people
     router.get("/users", users.findAll);
@@ -22,6 +22,7 @@ module.exports = app => {
 
     //Delete all people
     router.delete("/users", users.deleteAll);
+
 
     app.use('/api/ArtMatch', router);
 }
