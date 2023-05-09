@@ -1,5 +1,4 @@
 import Musees from '../services/Musees';
-
 function Page1() {
     return (
         <>

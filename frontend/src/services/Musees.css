@@ -1,0 +1,12 @@
+.divMusees {
+    background:#d2e6cc; 
+    color:#fff; 
+    padding:7px 15px; 
+    border-radius:5px; 
+    width:350px;
+    margin: 5%;
+    box-shadow: 5px 5px 5px #183A1D;
+}
+h2{
+    text-transform : capitalize;
+}

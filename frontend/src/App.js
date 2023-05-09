@@ -2,7 +2,6 @@ import './App.css';
 import Header from './views/Header';
 import Navbar from './views/navbar';
 
-
 function App() {
   return (
     <div className="App">
