@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from "react";
 import './views.css';
+import { useParams } from "react-router-dom";
+import ComptePanel from "./ComptePanel";
 
 function Header() {
+
+  const { userId } = useParams();
+
   return (
-    <div className="title">
-      <h1>ArtMatch&nbsp;</h1>
-    </div>
+    <>
+      <div className="banner">
+        <h1 className="title">ArtMatch&nbsp;</h1>
+        <ComptePanel userId={userId} />
+      </div>
+    </>
   )
 }
 

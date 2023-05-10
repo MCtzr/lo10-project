@@ -88,7 +88,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    db.sequelize.query(`SELECT * FROM users WHERE id = '${id}'`)
+    db.sequelize.query(`SELECT * FROM users WHERE userId = '${id}'`)
         .then(data => {
             res.send(data);
         })
@@ -103,6 +103,21 @@ exports.findOne = (req, res) => {
 //Update a person by the id in the request
 exports.update = async (req, res) => {
 
+    console.log("test")
+    const id = req.params.id;
+
+    const { firstName, lastName, email, country, lat, lng, } = req.body;
+
+    db.sequelize.query(`UPDATE users SET firstName = '${firstName}', lastName = '${lastName}', email = '${email}', country = '${country}', lat = '${lat}', lng = '${lng}' WHERE userId = '${id}'`)
+        .then(data => {
+            res.send(data)
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving people."
+            });
+        });
 };
 
 

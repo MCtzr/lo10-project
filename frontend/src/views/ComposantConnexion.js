@@ -36,7 +36,7 @@ function ComposantConnexion() {
 
     return (
         <div>
-            <h2>Composant connexion</h2>
+            <h2>Se connexion</h2>
             <form onSubmit={handleSubmit}>
                 <label>
                     *User Id:

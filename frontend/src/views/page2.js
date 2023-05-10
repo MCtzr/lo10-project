@@ -6,7 +6,6 @@ function Page2() {
 
     return (
         <>
-            <h1>user id : {userId}</h1>
             <p>Je suis la page2</p>
         </>
     )
