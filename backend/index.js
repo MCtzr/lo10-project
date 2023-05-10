@@ -9,7 +9,7 @@ app.use(compression())
 app.use(express.json({ limit: '50mb' }));
 
 var corsOptions = {
-  origin: "http://localhost:4200" //Notre front end
+  origin: "http://localhost:3000" //Notre front end
 };
 
 app.use(cors(corsOptions));

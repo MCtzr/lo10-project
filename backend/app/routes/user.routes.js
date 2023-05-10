@@ -14,6 +14,9 @@ module.exports = app => {
     //Retrieve a single person with infos
     router.get("/users/:id", users.findOne);
 
+    //Retrieve a single person with infos
+    router.get("/users/:userId/:password", users.verifyId);
+
     //Update a person with id
     router.put("/users/:id", users.update);
 

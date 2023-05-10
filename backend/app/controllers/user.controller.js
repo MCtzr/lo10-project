@@ -3,13 +3,68 @@ const { cp } = require("fs");
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-const { QueryTypes } = require("sequelize");
 const { uuid } = require('uuidv4');
+const bcrypt = require('bcrypt');
 
 //Create and Save a new Person
 exports.create = async (req, res) => {
 
+    const { id, firstName, lastName, email, country, lat, lng, userId, password } = req.body;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10); // hachez le mot de passe avec bcrypt et une salage de 10
+
+        const newUser = await User.create({
+            id: uuid(),
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            country: country,
+            lat: lat,
+            lng: lng,
+            userId: userId,
+            password: hashedPassword,
+        }); // créez un nouvel utilisateur dans la base de données en utilisant le modèle User et le mot de passe haché
+
+        return newUser;
+    } catch (error) {
+        console.log(error);
+    }
 };
+
+//retrieve all people from the database
+exports.verifyId = (req, res) => {
+    const id = req.params.userId;
+    const clearPassword = req.params.password;
+
+
+    db.sequelize.query(`SELECT * FROM users WHERE userId = '${id}'`)
+        .then(data => {
+            const hashedPass = data[0][0].password
+            bcrypt.compare(clearPassword, hashedPass, function (err, result) {
+                if (err) {
+                    res.status(500).send({
+                        message:
+                            err.message || "Some error occurred while retrieving people."
+                    });
+                }
+                if (result === true) {
+                    console.log(true)
+                    res.json({ result: true });
+                } else {
+                    console.log(false)
+                    res.json({ result: false });
+                }
+            })
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving people."
+            });
+        });
+
+}
 
 //retrieve all people from the database
 exports.findAll = (req, res) => {
