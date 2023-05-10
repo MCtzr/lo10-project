@@ -4,7 +4,6 @@ import Navbar from './views/navbar';
 import ConnexionCompte from './views/connexionCompte';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-
 function App() {
 
   return (
