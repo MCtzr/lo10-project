@@ -1,6 +1,9 @@
 import data from './liste-musees.json';
 import './Musees.css';
 import React, { useState, useEffect } from 'react';
+import {BsFillTelephoneFill} from "react-icons/bs";
+import {GoLocation} from "react-icons/go";
+
 
 function Musees() {
   //const listemusees = data;
@@ -31,17 +34,21 @@ function Musees() {
       setTimeout(() => setLoading(false), 1000);
     }
   }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+    });
 
   return (
     <div onScroll={handleScroll}>
       
       {listemusees.map((musees) => (
         <div className="divMusees" key={musees.identifiant_museofile}>
-          <img src={`https://s3.eu-west-3.amazonaws.com/pop-phototeque/museo/${musees.identifiant_museofile}/museofile${musees.identifiant_museofile}.jpg`} alt={`${musees.identifiant_museofile}`}></img>
+          <img className="divImages" src={`https://s3.eu-west-3.amazonaws.com/pop-phototeque/museo/${musees.identifiant_museofile}/museofile${musees.identifiant_museofile}.jpg`} alt={`${musees.identifiant_museofile}` } loading="lazy"></img>
           <h2>{musees.nom_officiel_du_musee}</h2>
           <p>{musees.adresse}</p>
-          <p className= "adresse">{musees.code_postal} {musees.commune}</p>
-          <p className="tel"><i class="fa-solid fa-phone"></i> Téléphone : {musees.telephone}</p>
+          <p className= "adresse" ><GoLocation /> {musees.code_postal} {musees.commune}</p>
+          <p className="tel"><BsFillTelephoneFill /> Téléphone : {musees.telephone}</p>
           <p className="url">Site web : <a href={musees.url}>{musees.url}</a></p>
         </div>
       ))}

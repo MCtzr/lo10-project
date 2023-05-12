@@ -3,10 +3,17 @@
     color:#fff; 
     padding:7px 15px; 
     border-radius:5px; 
-    width:350px;
-    margin: 5%;
+    width:400px;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-top: 10px;
     box-shadow: 5px 5px 5px #183A1D;
+    
 }
 h2{
     text-transform : capitalize;
+}
+.divImages{
+    width: 350px;
+    border-radius: 10px;
 }
