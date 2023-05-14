@@ -1,12 +1,17 @@
-.divMusees {
+.musees {
+    display: inline-block;
+    margin: none;
     background:#d2e6cc; 
-    color:#fff; 
+    color:#183A1D; 
     padding:7px 15px; 
     border-radius:5px; 
     width:350px;
     margin: 5%;
-    box-shadow: 5px 5px 5px #183A1D;
 }
 h2{
     text-transform : capitalize;
+}   
+img {
+    max-width: 320px;
+    max-height: 220px;
 }
