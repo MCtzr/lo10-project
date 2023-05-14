@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './views.css';
+import './compte.css';
 import ComposantConnexion from "./ComposantConnexion";
 import ComposantInscription from "./ComposantInscription";
 
@@ -16,7 +16,7 @@ function ConnexionCompte() {
     };
 
     return (
-        <div>
+        <div className="navConnexion">
             <button onClick={() => setAfficherConnexion(true)}>Connexion</button>
             <button onClick={() => setAfficherConnexion(false)}>Inscription</button>
             {afficherComponent()}

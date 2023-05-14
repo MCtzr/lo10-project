@@ -1,4 +1,4 @@
-import './views.css';
+import './compte.css';
 import { useHistory, useParams } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
 const expressServer = require('../services/expressService');
@@ -55,31 +55,25 @@ function ModifyProfil() {
     return (
         <div>
             <h2>Modifier le profil de {userId}</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    *First Name:
+            <form className='formCompte' onSubmit={handleSubmit}>
+                <label>* First Name:</label>
                     <input type="text" name="firstName" ref={firstNameRef} placeholder={firstNameOrigin} />
-                </label>
-                <label>
-                    *Last Name:
+                
+                <label>* Last Name:</label>
                     <input type="text" name="lastName" ref={lastNameRef} placeholder={lastNameOrigin} />
-                </label>
-                <label>
-                    *Email:
+                
+                <label>* Email:</label>
                     <input type="text" name="email" ref={emailRef} placeholder={emailOrigin} />
-                </label>
-                <label>
-                    Country:
+                
+                <label>Country:</label>
                     <input type="text" name="country" ref={countryRef} placeholder={countryOrigin} />
-                </label>
-                <label>
-                    Lat:
+                
+                <label>Lat:</label>
                     <input type="text" name="lat" ref={latRef} placeholder={latOrigin} />
-                </label>
-                <label>
-                    Lng:
+                
+                <label>Lng:</label>
                     <input type="text" name="lng" ref={lngRef} placeholder={lngOrigin} />
-                </label>
+                
                 <button type="submit">Modify</button>
             </form>
         </div>
