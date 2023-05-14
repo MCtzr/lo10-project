@@ -1,5 +1,8 @@
 import './Musees.css';
 import React, { useState, useEffect } from 'react';
+import {BsFillTelephoneFill} from "react-icons/bs";
+import {GoLocation} from "react-icons/go";
+
 
 function Musees(props) {
   //useEffect(() => {
