@@ -1,4 +1,4 @@
-import './views.css';
+import './compte.css';
 import { useHistory } from 'react-router-dom'
 import { useState, useRef } from 'react';
 const expressServer = require('../services/expressService');
@@ -43,41 +43,35 @@ function ComposantInscription() {
     return (
         <div>
             <h2>S'inscrire</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    *User Id:
+            <form className='formCompte' onSubmit={handleSubmit}>
+                <label>* User Id:</label>
                     <input type="text" name="userId" ref={userIdRef} />
-                </label>
-                <label>
-                    *First Name:
+                
+                <label>* First Name:</label>
                     <input type="text" name="firstName" ref={firstNameRef} />
-                </label>
-                <label>
-                    *Last Name:
+                
+                <label>* Last Name:</label>
                     <input type="text" name="lastName" ref={lastNameRef} />
-                </label>
-                <label>
-                    *Email:
+                
+                <label>* Email:</label>
                     <input type="text" name="email" ref={emailRef} />
-                </label>
-                <label>
-                    Country:
+                
+                <label>Country:</label>
                     <input type="text" name="country" ref={countryRef} />
-                </label>
-                <label>
-                    Lat:
+                
+                <label>Lat:</label>
                     <input type="text" name="lat" ref={latRef} />
-                </label>
-                <label>
-                    Lng:
+                
+                <label>Lng:</label>
                     <input type="text" name="lng" ref={lngRef} />
-                </label>
-                <label>
-                    Password:
+                
+                <label>* Password:</label>
                     <input type={passwordType} name="password" ref={passwordRef} />
-                    <input type="checkbox" onClick={togglePasswordVisibility} />Show Password
-                </label>
+                    <input className='checkText' type="checkbox" onClick={togglePasswordVisibility} /> Show Password
+                <br/>
                 <button type="submit">Create your account</button>
+                <br/>
+                <label className='obligatoire'>(*) obligatoire</label>
             </form>
         </div>
     )
