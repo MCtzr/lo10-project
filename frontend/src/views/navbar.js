@@ -3,6 +3,7 @@ import Musees from '../services/Musees'
 import Oeuvre from './Oeuvre'
 import Musee from '../components/PageMusee'
 import { useParams } from "react-router-dom";
+import Page1 from './Page1'
 
 function Navbar() {
 
@@ -20,7 +21,7 @@ function Navbar() {
       </div>
       <Switch>
         <Route exact path='/artMatch/:userId/musees' component={Musees} >
-          <Musees />
+          <Page1 />
         </Route>
         <Route exact path='/artMatch/:userId/oeuvres' component={Oeuvre} >
           <Oeuvre />

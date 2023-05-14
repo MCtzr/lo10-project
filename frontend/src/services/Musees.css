@@ -4,8 +4,9 @@
     padding: 7px 15px;
     border-radius: 5px;
     width: 400px;
-    height: 500px;
+    height: 530px;
     margin: auto;
+    padding-top: 12.5px;
     margin-bottom: 20px;
     margin-top: 20px;
     margin-left: 4%;
@@ -14,6 +15,10 @@
     display: inline-block;
     vertical-align: top;
     transition: all 0.3s;
+}
+
+.divMusees h2 {
+    color: #fff;
 }
 
 .divMusees:hover {
@@ -31,21 +36,10 @@ h2 {
     height: 250px;
     overflow: hidden;
     align-items: center;
-    margin: auto;
     border-radius: 5px;
     padding: 0%;
 }
 
-.musees {
-    display: inline-block;
-    margin: none;
-    background: #d2e6cc;
-    color: #183A1D;
-    padding: 7px 15px;
-    border-radius: 5px;
-    width: 350px;
-    margin: 5%;
-}
 
 .images {
     width: 100%;
@@ -54,8 +48,4 @@ h2 {
 
 a {
     color: rgb(0, 195, 255);
-}
-
-h2 {
-    text-transform: capitalize;
 }

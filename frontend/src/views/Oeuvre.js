@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import Musees from '../services/Musees';
+import Oeuvres from '../services/Oeuvres';
 import Searchbar from './Searchbar';
 import data from '../services/liste-musees.json';
 
@@ -37,7 +37,7 @@ function Oeuvre() {
     return (
         <>
             <Searchbar search={searchMusee} searchQuery={query} onWriting={setQuery} />
-            <Musees data={musees} />
+            <Oeuvres />
         </>
     )
 }
