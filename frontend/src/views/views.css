@@ -40,14 +40,16 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: all 0.3s;
+  border-radius: 5px;
 }
 
 .navbar li a:hover:not(.active) {
-  background-color: #111;
+  background-color: #03774d;
 }
 
 .active {
-  background-color: #04AA6D;
+  background-color: #03774d;
 }
 
 .navbar input {
@@ -64,7 +66,8 @@
 }
 
 .compte:hover {
-  background-color: #04AA6D;
+  background-color: #03774d;
+  cursor: pointer;
 }
 
 .compte {
@@ -74,7 +77,7 @@
   width: 150px;
   height: 60px;
   border-radius: 30px;
-  border: 0px #04AA6D;
+  border: 0px #03774d;
   background-color: #183A1D;
   box-sizing: border-box;
   transition: all 0.3s;

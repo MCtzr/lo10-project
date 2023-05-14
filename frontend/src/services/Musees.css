@@ -1,19 +1,46 @@
 .divMusees {
-    background:#d2e6cc; 
-    color:#fff; 
-    padding:7px 15px; 
-    border-radius:5px; 
-    width:400px;
+    background: #183A1D;
+    color: #fff;
+    padding: 7px 15px;
+    border-radius: 5px;
+    width: 400px;
+    height: 500px;
     margin: auto;
-    margin-bottom: 40px;
-    margin-top: 10px;
-    box-shadow: 5px 5px 5px #183A1D;
-    
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 4%;
+    margin-right: 4%;
+    box-shadow: 5px 5px 5px #d2e6cc;
+    display: inline-block;
+    vertical-align: top;
+    transition: all 0.3s;
 }
-h2{
-    text-transform : capitalize;
+
+.divMusees:hover {
+    cursor: pointer;
+    background-color: #03774d;
 }
-.divImages{
-    width: 350px;
-    border-radius: 10px;
+
+h2 {
+    text-transform: capitalize;
+}
+
+.divImages {
+    display: flex;
+    width: 375px;
+    height: 250px;
+    overflow: hidden;
+    align-items: center;
+    margin: auto;
+    border-radius: 5px;
+    padding: 0%;
+}
+
+.images {
+    width: 100%;
+    border-radius: 5px;
+}
+
+a {
+    color: rgb(0, 195, 255);
 }

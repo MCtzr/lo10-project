@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import './views.css';
 import { useParams } from "react-router-dom";
 import ComptePanel from "./ComptePanel";

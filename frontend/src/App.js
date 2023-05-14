@@ -7,6 +7,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 function App() {
 
+  window.addEventListener('beforeunload', () => {
+    document.documentElement.scrollTop = 0;
+  });
+
   return (
 
     <Router>

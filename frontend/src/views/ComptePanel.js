@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './views.css';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 const expressServer = require('../services/expressService');
+
 
 function ComptePanel({ userId }) {
 
@@ -36,6 +36,10 @@ function ComptePanel({ userId }) {
         setAfficherCompte(!afficherCompte);
     }
 
+    const modifyProfil = (id) => {
+        history.push(`/artMatch/${userId}/modify`);
+    }
+
     return (
         <>
             <button className="compte" onClick={() => changeComponent()}>
@@ -50,7 +54,7 @@ function ComptePanel({ userId }) {
                     <p>Country : <b>{country}</b></p>
                     <p>Lat : <b>{lat}</b></p>
                     <p>Lng : <b>{lng}</b></p>
-                    <Link to={`./${userId}/modify`}><button>modifier</button></Link>
+                    <button onClick={() => modifyProfil()}>modifier</button>
                 </div>
             }
         </>

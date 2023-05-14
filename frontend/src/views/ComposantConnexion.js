@@ -27,7 +27,7 @@ function ComposantConnexion() {
         };
 
         if (await expressServer.verifyId(formData)) {
-            history.push(`/artMatch/${userIdRef.current.value}`);
+            history.push(`/artMatch/${userIdRef.current.value}/musees`);
         }
         else {
             console.log("invalid password");

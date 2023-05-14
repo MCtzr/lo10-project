@@ -49,7 +49,7 @@ function ModifyProfil() {
         };
         expressServer.modifyUser(formData, userId);
 
-        history.push(`../${userId}`);
+        history.push(`/artMatch/${userId}/musees`);
     }
 
     return (

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Page1 from './page1'
-import Page2 from './page2'
+import Musees from '../services/Musees'
+import Oeuvre from './Oeuvre'
+import Musee from '../components/PageMusee'
 import { useParams } from "react-router-dom";
 
 function Navbar() {
@@ -12,17 +13,20 @@ function Navbar() {
       <div className='navbar'>
         <nav>
           <ul>
-            <li><Link to={`../../artMatch/${userId}/page1`}>Page 1</Link></li>
-            <li><Link to={`../../artMatch/${userId}/page2`}>Page 2</Link></li>
+            <li><Link to={`/artMatch/${userId}/musees`}>Musees</Link></li>
+            <li><Link to={`/artMatch/${userId}/oeuvres`}>Oeuvre</Link></li>
           </ul>
         </nav>
       </div>
       <Switch>
-        <Route exact path='/artMatch/:userId/page1' component={Page1} >
-          <Page1 />
+        <Route exact path='/artMatch/:userId/musees' component={Musees} >
+          <Musees />
         </Route>
-        <Route exact path='/artMatch/:userId/page2' component={Page2} >
-          <Page2 />
+        <Route exact path='/artMatch/:userId/oeuvres' component={Oeuvre} >
+          <Oeuvre />
+        </Route>
+        <Route exact path='/artMatch/:userId/musees/:musee' >
+          <Musee />
         </Route>
       </Switch>
     </Router>

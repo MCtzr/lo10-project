@@ -1,14 +1,13 @@
-import Musees from '../services/Musees';
 import { useParams } from "react-router-dom";
 
-function Page1() {
+function Oeuvre() {
 
     const { userId } = useParams();
 
     return (
         <>
-            <Musees />
+            <p>Oeuvres</p>
         </>
     )
 }
-export default Page1
+export default Oeuvre

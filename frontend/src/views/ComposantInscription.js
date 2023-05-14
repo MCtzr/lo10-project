@@ -29,7 +29,7 @@ function ComposantInscription() {
         };
         expressServer.createUser(formData);
         event.preventDefault();
-        history.push(`/artMatch/${userIdRef.current.value}`);
+        history.push(`/artMatch/${userIdRef.current.value}/musees`);
     }
 
     const togglePasswordVisibility = () => {
