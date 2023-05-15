@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import data from '../services/liste-musees.json';
-import noImage from '../assets/noImage.jpg';
+import data from '../../../services/liste-musees.json';
+import noImage from '../../../assets/noImage.jpg';
 import React, { useState } from 'react';
-import './PageMusee';
+import './PageMusee.css';
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { TbWorld } from "react-icons/tb"

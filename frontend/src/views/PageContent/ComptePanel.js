@@ -1,9 +1,8 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './views.css';
-import './compte.css'
+import '../views.css';
+import '../compte.css'
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
-const expressServer = require('../services/expressService');
+const expressServer = require('../../services/expressService');
 
 
 function ComptePanel({ userId }) {

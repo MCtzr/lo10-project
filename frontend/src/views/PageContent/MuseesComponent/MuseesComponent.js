@@ -1,8 +1,7 @@
-import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import Musees from '../services/Musees';
-import Searchbar from './Searchbar';
-import data from '../services/liste-musees.json';
+import Musees from './MuseesResearched/Musees';
+import Searchbar from '../../../components/SearchBar/Searchbar';
+import data from '../../../services/liste-musees.json';
 
 function Page1() {
 

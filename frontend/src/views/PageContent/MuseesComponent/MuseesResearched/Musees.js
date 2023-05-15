@@ -1,9 +1,9 @@
-import './Musees.css';
+import '../../../Musees.css';
 import React, { useState, useEffect } from 'react';
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
-import noImage from '../assets/noImage.jpg';
+import noImage from '../../../../assets/noImage.jpg';
 import { useHistory } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 

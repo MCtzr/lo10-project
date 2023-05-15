@@ -5,23 +5,26 @@
 h2 {
     color: #183A1D;
 }
+
 .formCompte {
     max-width: 500px;
     width: 60%;
     margin: auto;
     padding: 2%;
-    border: solid rgb(24,58,29,0.5) 5px;
+    border: solid rgb(24, 58, 29, 0.5) 5px;
     border-radius: 20px;
     background-color: #d2e6cc;
 }
-.checkText{
+
+.checkText {
     width: auto;
 }
 
-label{
+label {
     font-size: 1.25em;
 }
-.obligatoire{
+
+.obligatoire {
     font-size: 1em;
 }
 
@@ -34,12 +37,13 @@ input {
 
 .compte:active {
     border: solid #183A1D 1px;
-  }
-  
+}
+
 .compte:hover {
     background-color: #04AA6D;
-  }
-  
+    cursor: pointer;
+}
+
 .compte {
     position: absolute;
     top: 45px;
@@ -52,14 +56,14 @@ input {
     box-sizing: border-box;
     transition: all 0.3s;
 }
-  
+
 .compte h3 {
     text-align: center;
     font-family: 'Ikka Rounded', sans-serif;
     font-size: 17px;
     color: #FEFBE9
-  }
-  
+}
+
 .comptePanel {
     position: absolute;
     top: 150px;
@@ -72,22 +76,25 @@ input {
     box-sizing: border-box;
     transition: all 1s;
 }
-.comptePanel p{
+
+.comptePanel p {
     color: #183A1D;
     text-align: left;
     margin: 10%;
 }
+
 .comptePanel button {
     background-color: #183A1D;
     color: #F0A04B;
 }
-.comptePanel h1{
+
+.comptePanel h1 {
     color: #F0A04B;
-    text-transform : capitalize;
+    text-transform: capitalize;
 }
 
 
-.navConnexion{
+.navConnexion {
     box-sizing: border-box;
     width: 100%;
     height: 100px;
@@ -96,7 +103,8 @@ input {
     align-items: baseline;
     background-color: #F0A04B;
 }
-.navConnexion button{
+
+.navConnexion button {
     padding: 10px;
     width: 20%;
     margin-top: 35px;
@@ -104,4 +112,4 @@ input {
     margin-right: 10px;
     margin-bottom: 50px;
 
-  }
+}

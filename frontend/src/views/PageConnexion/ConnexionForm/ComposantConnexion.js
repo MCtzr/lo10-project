@@ -1,7 +1,7 @@
-import './compte.css';
+import '../../compte.css';
 import { useHistory } from 'react-router-dom'
 import { useState, useRef } from 'react';
-const expressServer = require('../services/expressService');
+const expressServer = require('../../../services/expressService');
 
 function ComposantConnexion() {
 
@@ -39,12 +39,12 @@ function ComposantConnexion() {
             <h2>Se connecter</h2>
             <form className='formCompte' onSubmit={handleSubmit}>
                 <label>* User Id:</label>
-                    <input type="text" name="userId" ref={userIdRef} />
+                <input type="text" name="userId" ref={userIdRef} />
                 <label>Password:</label>
-                    <input type={`${type}`} name="password" ref={passwordRef} />
-                    <input className='checkText' type="checkbox" onClick={() => myFunction()} /> 
+                <input type={`${type}`} name="password" ref={passwordRef} />
+                <input className='checkText' type="checkbox" onClick={() => myFunction()} />
                 <label> Show Password</label>
-                
+
                 <input type="submit" value="Connect" />
                 <label className='obligatoire'>(*) obligatoire</label>
             </form>

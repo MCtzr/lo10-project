@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './compte.css';
-import ComposantConnexion from "./ComposantConnexion";
-import ComposantInscription from "./ComposantInscription";
+import '../compte.css';
+import ComposantConnexion from "./ConnexionForm/ComposantConnexion";
+import ComposantInscription from "./InscriptionForm/ComposantInscription";
 
 function ConnexionCompte() {
 

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Musees from '../services/Musees'
-import Oeuvre from './Oeuvre'
-import Musee from '../components/PageMusee'
+import Musees from './MuseesComponent/MuseesResearched/Musees'
+import Oeuvre from './OeuvresComponent/OeuvresComponent'
+import Musee from './OneMuseeComponent/PageMusee'
 import { useParams } from "react-router-dom";
-import Page1 from './Page1'
+import Page1 from './MuseesComponent/MuseesComponent'
 
-function Navbar() {
+function PageContent() {
 
   const { userId } = useParams();
 
@@ -34,4 +34,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default PageContent

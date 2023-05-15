@@ -1,8 +1,8 @@
 import './App.css';
-import Header from './views/Header';
-import Navbar from './views/navbar';
-import ModifyProfil from './views/ModifyProfil';
-import ConnexionCompte from './views/connexionCompte';
+import Header from './views/PageContent/Header';
+import Navbar from './views/PageContent/PageContent';
+import ModifyProfil from './views/PageModify/ModifyProfil';
+import ConnexionCompte from './views/PageConnexion/ConnexionCompte';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 function App() {

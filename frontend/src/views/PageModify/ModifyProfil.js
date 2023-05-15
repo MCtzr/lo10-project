@@ -1,7 +1,7 @@
-import './compte.css';
+import '../compte.css';
 import { useHistory, useParams } from 'react-router-dom'
 import { useRef, useState, useEffect } from 'react';
-const expressServer = require('../services/expressService');
+const expressServer = require('../../services/expressService');
 
 function ModifyProfil() {
 
@@ -57,23 +57,23 @@ function ModifyProfil() {
             <h2>Modifier le profil de {userId}</h2>
             <form className='formCompte' onSubmit={handleSubmit}>
                 <label>* First Name:</label>
-                    <input type="text" name="firstName" ref={firstNameRef} placeholder={firstNameOrigin} />
-                
+                <input type="text" name="firstName" ref={firstNameRef} placeholder={firstNameOrigin} />
+
                 <label>* Last Name:</label>
-                    <input type="text" name="lastName" ref={lastNameRef} placeholder={lastNameOrigin} />
-                
+                <input type="text" name="lastName" ref={lastNameRef} placeholder={lastNameOrigin} />
+
                 <label>* Email:</label>
-                    <input type="text" name="email" ref={emailRef} placeholder={emailOrigin} />
-                
+                <input type="text" name="email" ref={emailRef} placeholder={emailOrigin} />
+
                 <label>Country:</label>
-                    <input type="text" name="country" ref={countryRef} placeholder={countryOrigin} />
-                
+                <input type="text" name="country" ref={countryRef} placeholder={countryOrigin} />
+
                 <label>Lat:</label>
-                    <input type="text" name="lat" ref={latRef} placeholder={latOrigin} />
-                
+                <input type="text" name="lat" ref={latRef} placeholder={latOrigin} />
+
                 <label>Lng:</label>
-                    <input type="text" name="lng" ref={lngRef} placeholder={lngOrigin} />
-                
+                <input type="text" name="lng" ref={lngRef} placeholder={lngOrigin} />
+
                 <button type="submit">Modify</button>
             </form>
         </div>

@@ -1,4 +1,4 @@
-import './views.css';
+import '../views.css';
 import { useParams } from "react-router-dom";
 import ComptePanel from "./ComptePanel";
 
