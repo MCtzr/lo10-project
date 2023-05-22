@@ -1,0 +1,48 @@
+.oeuvreCss{
+    background: #183A1D;
+    color: #fff;
+    padding: 7px 15px;
+    border-radius: 5px;
+    width: 400px;
+    height: 250px;
+    margin: auto;
+    padding-top: 12.5px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 4%;
+    margin-right: 4%;
+    box-shadow: 5px 5px 5px #d2e6cc;
+    display: inline-block;
+    vertical-align: top;
+    transition: all 0.3s;
+}
+
+.liste{
+    list-style-type: none;
+    display: flex;
+    padding:0;  
+    justify-content: center;
+}
+
+li{
+    margin: auto;
+}
+input{
+    padding: 0;
+    border: none;
+    background: none;
+}
+a{
+    text-decoration: none;
+}
+
+.textStyle{
+    width: auto;
+    color: #fff;
+    font-size: medium;
+}
+
+.textStyle:hover{
+    color: #F0A04B;
+    font-size: large;
+}
