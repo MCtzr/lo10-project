@@ -1,10 +1,11 @@
 import '../views.css';
-import { useParams } from "react-router-dom";
 import ComptePanel from "./ComptePanel";
+import { useContext } from 'react';
+import CredentialGlobal from '../../components/Credentials/CredentialGlobal';
 
 function Header() {
 
-  const { userId } = useParams();
+  const { userId } = useContext(CredentialGlobal);
 
   return (
     <>

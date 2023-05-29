@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import Oeuvres from './OeuvresResearched/Oeuvres';
 import Searchbar from '../../../components/SearchBar/Searchbar';
@@ -6,7 +5,6 @@ import data from '../../../services/liste-musees.json';
 
 function Oeuvre() {
 
-    const { userId } = useParams();
     const [musees, setMusee] = useState(data)
     const [query, setQuery] = useState("")
 

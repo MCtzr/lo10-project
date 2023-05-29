@@ -5,14 +5,12 @@ import { MdLocationOn } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
 import noImage from '../../../../assets/noImage.jpg';
 import { useHistory } from 'react-router-dom'
-import { useParams } from "react-router-dom";
 
 function Musees(props) {
   const [listeMusees, setList] = useState([]);
   const [visibleCount, setVisibleCount] = useState(10);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const { userId } = useParams();
 
   useEffect(() => {
     setList(props.data.slice(0, visibleCount));
@@ -44,7 +42,7 @@ function Musees(props) {
   });
 
   function goOnMuseum(museeId) {
-    history.push(`/artMatch/${userId}/musees/${museeId}`);
+    history.push(`/artMatch/musees/${museeId}`);
   }
 
   function handleImageLoadError(index) {

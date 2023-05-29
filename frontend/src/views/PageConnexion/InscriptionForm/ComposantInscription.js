@@ -1,6 +1,7 @@
 import '../../compte.css';
 import { useHistory } from 'react-router-dom'
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import CredentialGlobal from '../../../components/Credentials/CredentialGlobal';
 const expressServer = require('../../../services/expressService');
 
 function ComposantInscription() {
@@ -15,6 +16,7 @@ function ComposantInscription() {
     const lngRef = useRef(null);
     const passwordRef = useRef(null);
     const history = useHistory();
+    const { userId, updateCredential } = useContext(CredentialGlobal);
 
     const handleSubmit = (event) => {
         const formData = {
@@ -28,8 +30,9 @@ function ComposantInscription() {
             password: passwordRef.current.value,
         };
         expressServer.createUser(formData);
+        updateCredential(formData.userId);
         event.preventDefault();
-        history.push(`/artMatch/${userIdRef.current.value}/musees`);
+        history.push(`/artMatch/musees`);
     }
 
     const togglePasswordVisibility = () => {

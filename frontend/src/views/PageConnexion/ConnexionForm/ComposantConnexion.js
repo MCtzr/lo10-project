@@ -1,6 +1,7 @@
 import '../../compte.css';
 import { useHistory } from 'react-router-dom'
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
+import CredentialGlobal from '../../../components/Credentials/CredentialGlobal';
 const expressServer = require('../../../services/expressService');
 
 function ComposantConnexion() {
@@ -9,6 +10,7 @@ function ComposantConnexion() {
     const userIdRef = useRef(null);
     const passwordRef = useRef(null);
     const history = useHistory();
+    const { userId, updateCredential } = useContext(CredentialGlobal);
 
     const myFunction = () => {
         if (type === "password") {
@@ -27,9 +29,11 @@ function ComposantConnexion() {
         };
 
         if (await expressServer.verifyId(formData)) {
-            history.push(`/artMatch/${userIdRef.current.value}/musees`);
+            updateCredential(formData.userId)
+            history.push(`/artMatch/musees`);
         }
         else {
+            //AFFICHER LA NOTIF A L'ECRAN
             console.log("invalid password");
         }
     }

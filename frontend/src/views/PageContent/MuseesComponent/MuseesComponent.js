@@ -3,7 +3,7 @@ import Musees from './MuseesResearched/Musees';
 import Searchbar from '../../../components/SearchBar/Searchbar';
 import data from '../../../services/liste-musees.json';
 
-function Page1() {
+function MuseesList() {
 
     const [filteredMusees, setFilteredMusees] = useState(data);
     const [query, setQuery] = useState("")
@@ -31,4 +31,4 @@ function Page1() {
     )
 }
 
-export default Page1;
+export default MuseesList;

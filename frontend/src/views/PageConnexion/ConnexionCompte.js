@@ -3,9 +3,11 @@ import '../compte.css';
 import ComposantConnexion from "./ConnexionForm/ComposantConnexion";
 import ComposantInscription from "./InscriptionForm/ComposantInscription";
 
+
 function ConnexionCompte() {
 
     const [afficherConnexion, setAfficherConnexion] = useState(true);
+
 
     const afficherComponent = () => {
         if (afficherConnexion) {

@@ -1,11 +1,13 @@
 import '../compte.css';
-import { useHistory, useParams } from 'react-router-dom'
-import { useRef, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
+import { useRef, useState, useEffect, useContext } from 'react';
+import CredentialGlobal from '../../components/Credentials/CredentialGlobal';
 const expressServer = require('../../services/expressService');
+
 
 function ModifyProfil() {
 
-    const { userId } = useParams();
+    const { userId } = useContext(CredentialGlobal);
 
     const firstNameRef = useRef(null);
     const lastNameRef = useRef(null);
@@ -48,8 +50,7 @@ function ModifyProfil() {
             lng: lngRef.current.value,
         };
         expressServer.modifyUser(formData, userId);
-
-        history.push(`/artMatch/${userId}/musees`);
+        history.push(`/artMatch/musees`);
     }
 
     return (

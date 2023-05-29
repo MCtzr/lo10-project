@@ -1,11 +1,12 @@
 import '../views.css';
 import '../compte.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
+import CredentialGlobal from '../../components/Credentials/CredentialGlobal';
 const expressServer = require('../../services/expressService');
 
 
-function ComptePanel({ userId }) {
+function ComptePanel() {
 
     var [firstName, setFirstName] = useState("");
     var [lastName, setLastName] = useState("");
@@ -15,6 +16,7 @@ function ComptePanel({ userId }) {
     var [lng, setLng] = useState("");
     var [afficherCompte, setAfficherCompte] = useState(false);
     const history = useHistory();
+    const { userId } = useContext(CredentialGlobal);
 
     const getAccountInfos = async () => {
         const result = await expressServer.getAccountInfos(userId);
@@ -34,17 +36,22 @@ function ComptePanel({ userId }) {
     }, [afficherCompte]);
 
     const changeComponent = () => {
-        setAfficherCompte(!afficherCompte);
+        if (userId) {
+            setAfficherCompte(!afficherCompte);
+        }
+        else {
+            history.push(`/login`);
+        }
     }
 
-    const modifyProfil = (id) => {
-        history.push(`/artMatch/${userId}/modify`);
+    const modifyProfil = () => {
+        history.push(`/modifyProfil`);
     }
 
     return (
         <>
             <button className="compte" onClick={() => changeComponent()}>
-                <h3>{userId}</h3>
+                <h3>{userId ? userId : "Se connecter"}</h3>
             </button>
             {afficherCompte &&
                 <div className='comptePanel'>
