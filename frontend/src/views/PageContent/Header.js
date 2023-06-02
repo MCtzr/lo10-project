@@ -11,6 +11,7 @@ function Header() {
     <>
       <div className="banner">
         <h1 className="title">ArtMatch&nbsp;</h1>
+        <p className="subtitle">Trouve ton musée idéal&nbsp;</p>
         <ComptePanel userId={userId} />
       </div>
     </>

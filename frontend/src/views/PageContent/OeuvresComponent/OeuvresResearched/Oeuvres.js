@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../../../oeuvres.css';
+import { MdOutlineFavorite } from "react-icons/md";
+import { ImCross } from "react-icons/im";
 
 function Oeuvres() {
   const [oeuvres, setOeuvres] = useState([]);
-  const [currentOeuvreIndex, setCurrentOeuvreIndex] = useState(0);
+  const [index, setCurrentOeuvreIndex] = useState(0);
 
   const incrementLoveHate = () => {
     const getRandomIndex = () => {
       const maxIndex = 999;
-      let randomIndex = currentOeuvreIndex;
+      let randomIndex = index;
 
-      while (randomIndex === currentOeuvreIndex) {
+      while (randomIndex === index) {
         randomIndex = Math.floor(Math.random() * (maxIndex + 1));
       }
 
@@ -21,7 +23,7 @@ function Oeuvres() {
   };
 
   useEffect(() => {
-    fetch("https://data.culture.gouv.fr/api/records/1.0/search/?dataset=base-joconde-extrait&rows=1000&q=auteur")
+    fetch("https://data.culture.gouv.fr/api/records/1.0/search/?dataset=base-joconde-extrait&rows=1000")
       .then(response => response.json())
       .then(data => {
         setOeuvres(data.records);
@@ -33,20 +35,25 @@ function Oeuvres() {
   return (
     <>
       {oeuvres.length > 0 && (
-        <figure key={oeuvres[currentOeuvreIndex].id} className='oeuvreCss'>
-          <p>{oeuvres[currentOeuvreIndex].fields.titre}</p>
-          <p>{oeuvres[currentOeuvreIndex].fields.domaine}</p>
-          <ul className='liste'>
+        <div key={oeuvres[index].id} className='oeuvreInformation'> 
+          <p className="oeuvreTitre">{oeuvres[index].fields.titre || oeuvres[index].fields.denomination 
+          ? (oeuvres[index].fields.titre ? oeuvres[index].fields.titre : oeuvres[index].fields.denomination).replace(","," ")
+          : "Sans titre"}</p>
+          <p>Domaine : {oeuvres[index].fields.domaine ? oeuvres[index].fields.domaine.replace(","," ") : "Aucun"}</p>
+          <p>Auteur : {oeuvres[index].fields.auteur ? oeuvres[index].fields.auteur.replace(","," ")  : "Aucun"}</p>
+          <ul className='choixBoutonOeuvre'>
             <li>
-              <a className='textStyle' href={`/artMatch/musees/${oeuvres[currentOeuvreIndex].fields.code_museofile}`}>
-                j'aime
+              <a href={`/artMatch/musees/${oeuvres[index].fields.code_museofile}`}>
+                  <MdOutlineFavorite className="heart-icon" />
               </a>
             </li>
             <li>
-              <input type='button' onClick={incrementLoveHate} className='textStyle' value="j'aime pas" />
+              <a onClick={incrementLoveHate}>
+                  <ImCross className="cross-icon" />
+              </a>
             </li>
           </ul>
-        </figure>
+        </div>
       )}
     </>
   );

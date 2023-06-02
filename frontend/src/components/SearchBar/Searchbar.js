@@ -1,3 +1,6 @@
+
+import Dictaphone from '../SpeechRecognition/Dictaphone';
+
 function SearchBar(props) {
 
   const handleSearch = (e) => {
@@ -13,6 +16,7 @@ function SearchBar(props) {
         onChange={handleSearch}
         placeholder="Rechercher..."
       />
+      <Dictaphone onSpeech={props.onWriting} searchFunction={props.search}/>
     </div>
   );
 };

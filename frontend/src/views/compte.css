@@ -48,9 +48,9 @@ input {
     position: absolute;
     top: 45px;
     right: 50px;
-    width: 150px;
-    height: 60px;
-    border-radius: 30px;
+    width: 120px;
+    height: 50px;
+    border-radius: 8px;
     border: 0px #04AA6D;
     background-color: #183A1D;
     box-sizing: border-box;
@@ -59,8 +59,8 @@ input {
 
 .compte h3 {
     text-align: center;
-    font-family: 'Ikka Rounded', sans-serif;
-    font-size: 17px;
+    font-family: 'hedblk, Arial, Helvetica';
+    font-size: 15px;
     color: #FEFBE9
 }
 

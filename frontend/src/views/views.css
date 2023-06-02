@@ -1,19 +1,28 @@
 @import url('https://fonts.cdnfonts.com/css/ikka-rounded');
 
 .title {
+  padding-top: 10px;
   color: #FEFBE9;
-  font-family: 'Ikka Rounded', sans-serif;
+  font-family: 'hedblk, Arial, Helvetica';
   font-size: 60px;
+}
+
+.subtitle {
+  color: #fefbe9ee;
+  font-family: 'hedblk, Arial, Helvetica', sans-serif;
+  font-size: 16px;
 }
 
 .banner {
   box-sizing: border-box;
   width: 100%;
-  height: 150px;
+  height: 220px;
   display: flex;
   justify-content: center;
   align-items: baseline;
-  background-color: #F0A04B;
+  background-image: url('../../public/monet.jpg');
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
 }
 
 .searchbar {
@@ -29,12 +38,26 @@
   text-align: center;
   padding: 5px;
   margin-bottom: 5px;
-  background-color: #eead67;
-  border-radius: 10px;
+  background-color: #FEFBE9;
+  border-radius: 8px;
   border-style: solid;
-  border-color: #eead67;
-  font-family: 'Ikka Rounded', sans-serif;
+  border-color: #FEFBE9;
+  font-family: 'hedblk, Arial, Helvetica', sans-serif;
+  font-size: 14px;
   color: #183A1D;
+}
+
+.speechrecognition {
+  margin: 8px 6px 5px 10px;
+  width: 35px;
+  border-radius: 25px;
+  border: 0;
+  background-color:#FEFBE9;
+  font-size: 15px;
+}
+
+.speechrecognition:hover {
+  background-color:rgb(126, 160, 120);
 }
 
 .navbar {
@@ -56,14 +79,16 @@
 }
 
 .navbar li a {
-  font-family: 'Ikka Rounded', sans-serif;
+  margin: 0px 5px;
+  font-family: 'hedblk, Arial, Helvetica';
+  font-size: 18px;
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 30px;
   text-decoration: none;
   transition: all 0.3s;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .navbar li a:hover:not(.active) {

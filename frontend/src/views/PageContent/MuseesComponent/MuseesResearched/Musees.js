@@ -64,9 +64,9 @@ function Musees(props) {
               )}
             </div>
             <h2>{musee.nom_officiel_du_musee}</h2>
-            <p className="adresse" ><MdLocationOn /> : {musee.adresse}, {musee.commune}, {musee.code_postal}</p>
-            <p className="tel"><BsFillTelephoneFill /> : {musee.telephone}</p>
-            <p className="url"><TbWorld /> : <a href={musee.url}>{musee.url}</a></p>
+            <p className="adresse" ><MdLocationOn /> {musee.adresse ? musee.adresse + ",": ""} {musee.commune ? musee.commune + ",": ""} {musee.code_postal ? musee.code_postal + ",": ""}</p>
+            <p className="tel"><BsFillTelephoneFill /> {musee.telephone}</p>
+            <p className="url"><TbWorld /> <a href={musee.url}>{musee.url}</a></p>
           </div>
         ))}
       </div>

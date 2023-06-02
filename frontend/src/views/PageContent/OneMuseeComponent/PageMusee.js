@@ -22,6 +22,21 @@ function PageMusee() {
     var [lng, setLng] = useState(0);
 
     const result = data.find((item) => item.identifiant_museofile === musee);
+    const [oeuvres, setOeuvres] = useState([]);
+
+    useEffect(() => {
+        const codeMudeofile = musee;
+      
+        const url = `https://data.culture.gouv.fr/api/records/1.0/search/?dataset=base-joconde-extrait&rows=1000&q=${codeMudeofile}`;
+        
+        fetch(url)
+          .then(response => response.json())
+          .then(dataOeuvres => {
+            setOeuvres(dataOeuvres.records);
+          })
+          .catch(error => console.error(error));
+    }, []);
+    console.log(oeuvres);
 
     const getAccountInfos = async () => {
         const value = await expressServer.getAccountInfos(userId);
@@ -52,8 +67,6 @@ function PageMusee() {
 
             L.marker([result.latitude, result.longitude]).addTo(mapRef.current);
 
-            console.log(lat)
-
             if (lat && lng) {
 
                 L.marker([lat, lng]).addTo(mapRef.current);
@@ -79,45 +92,55 @@ function PageMusee() {
     return (
         <>
             <h1>{result.nom_officiel_du_musee}</h1>
-            {imageLoaded ? (
-                <img
-                    className="img"
-                    width="30%"
-                    src={`https://s3.eu-west-3.amazonaws.com/pop-phototeque/museo/${result.identifiant_museofile}/museofile${result.identifiant_museofile}.jpg`}
-                    alt={`${result.identifiant_museofile}`}
-                    loading="lazy"
-                    onError={handleImageLoadError}
-                />
-            ) : (
-                <img
-                    className="img"
-                    width="30%"
-                    src={noImage}
-                    alt="noImage"
-                    loading="lazy"
-                />
-            )}
+            <div className="museeImage">
+                {imageLoaded ? (
+                    <img
+                        className="img"
+                        width="30%"
+                        src={`https://s3.eu-west-3.amazonaws.com/pop-phototeque/museo/${result.identifiant_museofile}/museofile${result.identifiant_museofile}.jpg`}
+                        alt={`${result.identifiant_museofile}`}
+                        loading="lazy"
+                        onError={handleImageLoadError}
+                    />
+                ) : (
+                    <img
+                        className="img"
+                        width="30%"
+                        src={noImage}
+                        alt="noImage"
+                        loading="lazy"
+                    />
+                )}
+            
+                <h3>Localisation</h3>
+                <div
+                    id="map"
+                    className="museeMap"
+                    ref={mapContainerRef}
+                >
+                </div>
 
-            <div className="infos">
-                <div className="oneInfo">
-                    <MdLocationOn /> : {result.adresse}, {result.commune},{" "}
-                    {result.code_postal},{" "}
-                </div>
-                <div className="oneInfo">
-                    <BsFillTelephoneFill /> : {result.telephone}
-                </div>
-                <div className="oneInfo">
-                    <TbWorld /> : {result.url}
-                </div>
+            </div>
+            <div className="museeInformation">
+                <h3>Adresse</h3>
+                <p className="oneInfo">{result.adresse ? "Adresse : " : ""}{result.adresse}</p>
+                <p className="oneInfo">Code postal : {result.code_postal}</p>
+                <p className="oneInfo">Ville : {result.commune}</p>
+                <p className="oneInfo">Département : {result.departement}</p>
+                <h3>Contact</h3>
+                <p className="oneInfo">Téléphone : {result.telephone}</p>
+                <p className="oneInfo">{result.url ? "Site web : " : ""}<a href={result.url}>{result.url}</a></p>
+                <p>&nbsp;</p>
+                <h3>Oeuvres</h3>
+                <ul>
+                    {oeuvres.slice(0, 20).map((oeuvre, index) => (
+                        // TODO ajouter un lien vers oeuvre + image 
+                        <li className="oeuvreInformation">{oeuvre.fields.denomination}</li>
+                    ))}
+                </ul>
             </div>
 
             <br />
-
-            <div
-                id="map"
-                style={{ width: "600px", height: "600px" }}
-                ref={mapContainerRef}
-            ></div>
         </>
     );
 }
