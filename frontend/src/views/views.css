@@ -52,12 +52,12 @@
   width: 35px;
   border-radius: 25px;
   border: 0;
-  background-color:#FEFBE9;
+  background-color: #FEFBE9;
   font-size: 15px;
 }
 
 .speechrecognition:hover {
-  background-color:rgb(126, 160, 120);
+  background-color: rgb(126, 160, 120);
 }
 
 .navbar {

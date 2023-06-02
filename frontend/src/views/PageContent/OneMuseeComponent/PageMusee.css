@@ -27,6 +27,12 @@ h1 {
     margin-bottom: 20px;
 }
 
+.selfMap {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
 .img {
     margin: 10px;
     width: 100%;
@@ -48,12 +54,38 @@ h1 {
     color: #183A1D;
     background-color: #fffdf3;
     width: 800px;
+
 }
 
-.oeuvreInformation {
+.oeuvresInformation {
     padding: 0;
     margin: 5px;
-    max-width: 600px;
+    max-width: 500px;
+    max-height: 700px;
+    border: rgb(185, 185, 185) 1px solid;
+    border-radius: 20px;
     text-transform: capitalize;
     font-family: 'hedblk, Arial, Helvetica', sans-serif;
+    overflow: hidden;
+}
+
+.oeuvresContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+}
+
+.oeuvresInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin: 5px;
+}
+
+.oeuvresInformation img {
+    width: 100%;
+    object-fit: contain;
+
 }

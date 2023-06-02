@@ -63,8 +63,8 @@ function Musees(props) {
                 <img className="images" src={noImage} alt="noImage" loading="lazy"></img>
               )}
             </div>
-            <h2>{musee.nom_officiel_du_musee}</h2>
-            <p className="adresse" ><MdLocationOn /> {musee.adresse ? musee.adresse + ",": ""} {musee.commune ? musee.commune + ",": ""} {musee.code_postal ? musee.code_postal + ",": ""}</p>
+            <h2 className="secondTitle">{musee.nom_officiel_du_musee}</h2>
+            <p className="adresse" ><MdLocationOn /> {musee.adresse ? musee.adresse + "," : ""} {musee.commune ? musee.commune + "," : ""} {musee.code_postal ? musee.code_postal + "," : ""}</p>
             <p className="tel"><BsFillTelephoneFill /> {musee.telephone}</p>
             <p className="url"><TbWorld /> <a href={musee.url}>{musee.url}</a></p>
           </div>

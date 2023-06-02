@@ -1,9 +1,9 @@
-.oeuvreInformation{
+.oeuvreInformation {
     background: #fffdf3;
     padding: 7px 15px;
     border-radius: 5px;
     width: 700px;
-    max-height: 500px;
+    max-height: 1000px;
     margin: auto;
     padding-top: 12.5px;
     margin-bottom: 20px;
@@ -18,10 +18,10 @@
     font-family: 'hedblk, Arial, Helvetica';
     font-size: 20px;
     font-weight: bolder;
-    color:#183A1D;
+    color: #183A1D;
 }
 
-.choixBoutonOeuvre{
+.choixBoutonOeuvre {
     list-style-type: none;
     display: flex;
     float: inline-end;
@@ -29,13 +29,13 @@
     justify-content: center;
 }
 
-.choixBoutonOeuvre li{
+.choixBoutonOeuvre li {
     background-color: #f0ede4;
     margin: auto;
     border-radius: 30px;
 }
 
-.choixBoutonOeuvre a{
+.choixBoutonOeuvre a {
     display: flex;
     text-decoration: none;
     width: auto;
