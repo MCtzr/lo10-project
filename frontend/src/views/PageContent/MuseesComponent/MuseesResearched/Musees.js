@@ -1,19 +1,22 @@
 import '../../../Musees.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
 import noImage from '../../../../assets/noImage.jpg';
 import { useHistory } from 'react-router-dom'
+import CredentialGlobal from '../../../../components/Credentials/CredentialGlobal';
 
 function Musees(props) {
   const [listeMusees, setList] = useState([]);
   const [visibleCount, setVisibleCount] = useState(10);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const { token } = useContext(CredentialGlobal);
 
   useEffect(() => {
     setList(props.data.slice(0, visibleCount));
+    console.log(token);
   }, [visibleCount, props.data]);
 
   function handleScroll() {

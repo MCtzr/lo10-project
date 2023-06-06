@@ -3,11 +3,11 @@ import { useHistory } from 'react-router-dom'
 import { useRef, useState, useEffect, useContext } from 'react';
 import CredentialGlobal from '../../components/Credentials/CredentialGlobal';
 import L from 'leaflet';
-const expressServer = require('../../services/expressService');
-
+import ExpressService from '../../services/expressService';
 
 function ModifyProfil() {
 
+    const expressService = ExpressService();
     const { userId } = useContext(CredentialGlobal);
 
     const firstNameRef = useRef(null);
@@ -37,13 +37,13 @@ function ModifyProfil() {
             lat: latOrigin,
             lng: lngOrigin,
         };
-        expressServer.modifyUser(formData, userId);
+        expressService.modifyUser(formData, userId);
         history.push(`/artMatch/musees`);
     }
 
     useEffect(() => {
         const getAccountInfos = async () => {
-            const result = await expressServer.getAccountInfos(userId);
+            const result = await expressService.getAccountInfos(userId);
             setFirstName(result.firstName);
             setLastName(result.lastName);
             setEmail(result.email);
@@ -86,8 +86,6 @@ function ModifyProfil() {
             });
 
             var marker
-
-            console.log(latOrigin)
 
             if (latOrigin && lngOrigin) {
                 marker = L.marker([latOrigin, lngOrigin]).addTo(mapRef.current)

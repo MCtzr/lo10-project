@@ -5,11 +5,16 @@ const User = db.users;
 const Op = db.Sequelize.Op;
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+
+function generateAccessToken(user) {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 1800 });
+}
 
 //Create and Save a new Person
 exports.create = async (req, res) => {
 
-    const { id, firstName, lastName, email, country, lat, lng, userId, password } = req.body;
+    const { firstName, lastName, email, country, lat, lng, userId, password } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10); // hachez le mot de passe avec bcrypt et une salage de 10
@@ -26,7 +31,11 @@ exports.create = async (req, res) => {
             password: hashedPassword,
         }); // créez un nouvel utilisateur dans la base de données en utilisant le modèle User et le mot de passe haché
 
-        return newUser;
+        const accessToken = generateAccessToken({ userId });
+
+        res.send({
+            accessToken,
+        });
     } catch (error) {
         console.log(error);
     }
@@ -35,8 +44,7 @@ exports.create = async (req, res) => {
 //retrieve all people from the database
 exports.verifyId = (req, res) => {
     const id = req.params.userId;
-    const clearPassword = req.params.password;
-
+    const clearPassword = req.body.password;
 
     db.sequelize.query(`SELECT * FROM users WHERE userId = '${id}'`)
         .then(data => {
@@ -49,10 +57,12 @@ exports.verifyId = (req, res) => {
                     });
                 }
                 if (result === true) {
-                    console.log(true)
-                    res.json({ result: true });
+                    const accessToken = generateAccessToken({ id });
+
+                    res.send({
+                        accessToken,
+                    });
                 } else {
-                    console.log(false)
                     res.json({ result: false });
                 }
             })

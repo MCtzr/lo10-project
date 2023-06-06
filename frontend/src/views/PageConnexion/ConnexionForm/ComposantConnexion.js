@@ -2,15 +2,17 @@ import '../../compte.css';
 import { useHistory } from 'react-router-dom'
 import { useState, useRef, useContext } from 'react';
 import CredentialGlobal from '../../../components/Credentials/CredentialGlobal';
-const expressServer = require('../../../services/expressService');
+import ExpressService from '../../../services/expressService';
 
 function ComposantConnexion() {
+
+    const expressService = ExpressService();
 
     const [type, setPasswordType] = useState('password');
     const userIdRef = useRef(null);
     const passwordRef = useRef(null);
     const history = useHistory();
-    const { userId, updateCredential } = useContext(CredentialGlobal);
+    const { updateCredential, updateToken } = useContext(CredentialGlobal);
 
     const myFunction = () => {
         if (type === "password") {
@@ -28,14 +30,17 @@ function ComposantConnexion() {
             password: passwordRef.current.value,
         };
 
-        if (await expressServer.verifyId(formData)) {
-            updateCredential(formData.userId)
-            history.push(`/artMatch/musees`);
-        }
-        else {
-            //AFFICHER LA NOTIF A L'ECRAN
-            console.log("invalid password");
-        }
+        await expressService.verifyId(formData)
+            .then((token) => {
+                // Mise à jour du token à l'aide de la fonction updateToken du contexte
+                updateToken(token);
+                updateCredential(formData.userId)
+                history.push(`/artMatch/musees`);
+            })
+            .catch((error) => {
+                console.error(error);
+                // Gérer l'erreur, par exemple afficher un message d'erreur à l'utilisateur
+            });
     }
 
     return (

@@ -3,6 +3,7 @@ const compression = require('compression')
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const asyncify = require('express-asyncify');
+require('dotenv').config();
 
 const app = asyncify(express());
 app.use(compression())
@@ -29,7 +30,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the ArtMatch Backend application." });
 });
 
-require("./app/routes/global.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // set port, listen for requests

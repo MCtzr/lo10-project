@@ -3,8 +3,7 @@ import '../compte.css'
 import { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
 import CredentialGlobal from '../../components/Credentials/CredentialGlobal';
-const expressServer = require('../../services/expressService');
-
+import ExpressService from '../../services/expressService';
 
 function ComptePanel() {
 
@@ -17,9 +16,10 @@ function ComptePanel() {
     var [afficherCompte, setAfficherCompte] = useState(false);
     const history = useHistory();
     const { userId } = useContext(CredentialGlobal);
+    const expressService = ExpressService();
 
     const getAccountInfos = async () => {
-        const result = await expressServer.getAccountInfos(userId);
+        const result = await expressService.getAccountInfos(userId);
         setFirstName(result.firstName);
         setLastName(result.lastName);
         setEmail(result.email);

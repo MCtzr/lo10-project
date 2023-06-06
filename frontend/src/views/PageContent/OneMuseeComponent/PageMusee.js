@@ -8,7 +8,8 @@ import CredentialGlobal from '../../../components/Credentials/CredentialGlobal';
 import chargementImage from '../../../assets/chargementImage.gif';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
-const expressServer = require('../../../services/expressService');
+import ExpressService from '../../../services/expressService';
+
 
 function PageMusee() {
     const { musee } = useParams();
@@ -17,6 +18,7 @@ function PageMusee() {
     const mapRef = useRef(null);
     const markersRef = useRef([]); // Référence aux marqueurs
     const { userId } = useContext(CredentialGlobal);
+    const expressService = ExpressService();
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -86,7 +88,7 @@ function PageMusee() {
     }, []);
 
     const getAccountInfos = async () => {
-        const value = await expressServer.getAccountInfos(userId);
+        const value = await expressService.getAccountInfos(userId);
         if (value) {
             setLat(value.lat);
             setLng(value.lng);

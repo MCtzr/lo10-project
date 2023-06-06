@@ -3,9 +3,11 @@ import { useHistory } from 'react-router-dom'
 import { useState, useRef, useContext, useEffect } from 'react';
 import CredentialGlobal from '../../../components/Credentials/CredentialGlobal';
 import L from 'leaflet';
-const expressServer = require('../../../services/expressService');
+import ExpressService from '../../../services/expressService';
 
 function ComposantInscription() {
+
+    const expressService = ExpressService();
 
     const [passwordType, setPasswordType] = useState('password');
     const userIdRef = useRef(null);
@@ -17,12 +19,13 @@ function ComposantInscription() {
     var lngRef = null;
     const passwordRef = useRef(null);
     const history = useHistory();
-    const { userId, updateCredential } = useContext(CredentialGlobal);
+    const { updateCredential, updateToken } = useContext(CredentialGlobal);
 
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         const formData = {
             userId: userIdRef.current.value,
             firstName: firstNameRef.current.value,
@@ -33,10 +36,19 @@ function ComposantInscription() {
             lng: lngRef,
             password: passwordRef.current.value,
         };
-        expressServer.createUser(formData);
-        updateCredential(formData.userId);
-        event.preventDefault();
-        history.push(`/artMatch/musees`);
+        await expressService.createUser(formData)
+            .then((token) => {
+
+                // Mise à jour du token à l'aide de la fonction updateToken du contexte
+                console.log(token)
+                updateToken(token);
+                updateCredential(formData.userId);
+                history.push(`/artMatch/musees`);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
     }
 
     const togglePasswordVisibility = () => {
