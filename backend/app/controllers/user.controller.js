@@ -31,13 +31,17 @@ exports.create = async (req, res) => {
             password: hashedPassword,
         }); // créez un nouvel utilisateur dans la base de données en utilisant le modèle User et le mot de passe haché
 
+        const value = newUser.dataValues
+
         const accessToken = generateAccessToken({ userId });
 
-        res.send({
-            accessToken,
+        res.status(201).send({
+            value, accessToken,
         });
     } catch (error) {
-        console.log(error);
+        res.status(500).send({
+            message: "Internal server error : Some error occured while adding a new user."
+        });
     }
 };
 
@@ -52,25 +56,25 @@ exports.verifyId = (req, res) => {
             bcrypt.compare(clearPassword, hashedPass, function (err, result) {
                 if (err) {
                     res.status(500).send({
-                        message:
-                            err.message || "Some error occurred while retrieving people."
+                        message: "Internal server error : Some error occured while verifying your credencials."
                     });
                 }
                 if (result === true) {
                     const accessToken = generateAccessToken({ id });
 
-                    res.send({
+                    res.status(200).send({
                         accessToken,
                     });
                 } else {
-                    res.json({ result: false });
+                    res.status(401).send({
+                        message: "Unauthorized : Some error occured while verifying your credencials, id and password doesn't correspond."
+                    });
                 }
             })
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving people."
+                message: "Internal server error : Some error occured while verifying your credencials, maybe the user ID doesn't exist."
             });
         });
 
@@ -84,12 +88,11 @@ exports.findAll = (req, res) => {
 
     User.findAll({ where: condition })
         .then(data => {
-            res.send(data);
+            res.status(200).send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving people."
+                message: "Internal server error : Some error occured while retrieving all users."
             });
         });
 };
@@ -100,11 +103,11 @@ exports.findOne = (req, res) => {
 
     db.sequelize.query(`SELECT * FROM users WHERE userId = '${id}'`)
         .then(data => {
-            res.send(data);
+            res.status(200).send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating person with id=" + id
+                message: "Internal server error : Some error while retrieving user with id=" + id + "."
             });
         });
 };
@@ -113,19 +116,17 @@ exports.findOne = (req, res) => {
 //Update a person by the id in the request
 exports.update = async (req, res) => {
 
-    console.log("test")
     const id = req.params.id;
 
     const { firstName, lastName, email, country, lat, lng, } = req.body;
 
     db.sequelize.query(`UPDATE users SET firstName = '${firstName}', lastName = '${lastName}', email = '${email}', country = '${country}', lat = '${lat}', lng = '${lng}' WHERE userId = '${id}'`)
         .then(data => {
-            res.send(data)
+            res.status(200).send(data)
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving people."
+                message: "Internal server error : Some error occurred while updating user with id=" + id + "."
             });
         });
 };
@@ -140,18 +141,18 @@ exports.delete = async (req, res) => {
     })
         .then(num => {
             if (num == 1) {
-                res.send({
-                    message: "Person was deleted successfully."
+                res.status(200).send({
+                    message: "OK : User was deleted successfully."
                 });
             } else {
-                res.send({
-                    message: `Cannot delete Person with id=${id}. Maybe person was not found!`
+                res.status(400).send({
+                    message: `Bad request : Cannot delete user with id=${id}. Maybe user was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Person with id=" + id
+                message: "Internal server error : Could not delete user with id=" + id + "."
             });
         });
 };
@@ -165,12 +166,11 @@ exports.deleteAll = async (req, res) => {
         truncate: false
     })
         .then(nums => {
-            res.send({ message: `${nums} people were deleted successfully.` });
+            res.status(200).send({ message: `OK : ${nums} users were deleted successfully.` });
         })
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Some error occured while removing all people."
+                message: "Internal server error : Some error occured while removing all users."
             });
         });
 };

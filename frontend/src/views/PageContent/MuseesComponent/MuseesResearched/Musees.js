@@ -16,7 +16,6 @@ function Musees(props) {
 
   useEffect(() => {
     setList(props.data.slice(0, visibleCount));
-    console.log(token);
   }, [visibleCount, props.data]);
 
   function handleScroll() {

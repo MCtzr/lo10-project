@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const asyncify = require('express-asyncify');
 require('dotenv').config();
-
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -24,7 +23,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  // Paths to files containing OpenAPI definitions
+  // Paths to files containing API definitions
   apis: ['./app/routes/*.js'],
 };
 
@@ -37,8 +36,6 @@ app.use(express.json({ limit: '50mb' }));
 var corsOptions = {
   origin: "http://localhost:3000" //Notre front end
 };
-
-
 
 app.use(cors(corsOptions));
 
@@ -65,6 +62,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-
-
+// set doc route
 app.use('/api/ArtMatch/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

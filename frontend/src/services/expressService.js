@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import CredentialGlobal from '../components/Credentials/CredentialGlobal';
 
 const useExpressService = () => {
-    const { token } = useContext(CredentialGlobal);
+    const { token, updateCredential } = useContext(CredentialGlobal);
 
     const path = 'http://localhost:8080/api/ArtMatch'
 
@@ -26,8 +26,14 @@ const useExpressService = () => {
             body: JSON.stringify(body)
         };
         const response = await fetch(path + `/users/${userId}`, requestOptions);
-        const data = await response.json();
-        return data;
+        if (response.status === 401) {
+            updateCredential("")
+            return false;
+        }
+        else {
+            const data = await response.json();
+            return data;
+        }
     }
 
     const verifyId = async (body) => {
@@ -48,19 +54,31 @@ const useExpressService = () => {
     }
 
     const getAccountInfos = async (userId) => {
-        try {
-            const response = await fetch(path + `/users/${userId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token.accessToken}`
+        if (token) {
+            try {
+                const response = await fetch(path + `/users/${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token.accessToken}`
+                    }
+                });
+
+                if (response.status === 401) {
+                    updateCredential("")
+                    return false;
                 }
-            });
-            const data = await response.json();
-            return data[0][0];
-        } catch (error) {
-            console.error(error);
-            return false;
+                else {
+                    const data = await response.json();
+                    return data[0][0];
+                }
+            } catch (error) {
+                console.error(error);
+                return { "message": "500 : Error while retrieving user's infos" };
+            }
+        }
+        else {
+            return { "message": "Error : Token is missing, reconnect yourself." };
         }
     }
 

@@ -38,9 +38,7 @@ function ComposantInscription() {
         };
         await expressService.createUser(formData)
             .then((token) => {
-
                 // Mise à jour du token à l'aide de la fonction updateToken du contexte
-                console.log(token)
                 updateToken(token);
                 updateCredential(formData.userId);
                 history.push(`/artMatch/musees`);

@@ -9,7 +9,8 @@ import chargementImage from '../../../assets/chargementImage.gif';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.js';
 import ExpressService from '../../../services/expressService';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PageMusee() {
     const { musee } = useParams();
@@ -89,9 +90,16 @@ function PageMusee() {
 
     const getAccountInfos = async () => {
         const value = await expressService.getAccountInfos(userId);
-        if (value) {
+        console.log(value)
+        if (value.lat !== null && value.lng !== null && value.lat !== "null" && value.lng !== "null") {
             setLat(value.lat);
             setLng(value.lng);
+        }
+        else if (value.lat === "null" && value.lng === "null") {
+            toast.warning("Enter valid address to get it and an itinerary on the map")
+        }
+        if (value.message) {
+            toast.warning("Connect yourself to get your address and an itinerary on the map")
         }
     }
 
@@ -100,6 +108,9 @@ function PageMusee() {
     }
 
     useEffect(() => {
+
+        console.log(lat)
+
         if (result && mapContainerRef.current) {
 
             mapRef.current = L.map(mapContainerRef.current).setView(

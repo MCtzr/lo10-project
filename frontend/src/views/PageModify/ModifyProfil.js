@@ -4,6 +4,8 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import CredentialGlobal from '../../components/Credentials/CredentialGlobal';
 import L from 'leaflet';
 import ExpressService from '../../services/expressService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ModifyProfil() {
 
@@ -44,13 +46,19 @@ function ModifyProfil() {
     useEffect(() => {
         const getAccountInfos = async () => {
             const result = await expressService.getAccountInfos(userId);
-            setFirstName(result.firstName);
-            setLastName(result.lastName);
-            setEmail(result.email);
-            setCountry(result.country);
-            setLatOrigin(parseFloat(result.lat));
-            setLngOrigin(parseFloat(result.lng));
-            setCoordinatesLoaded(true);
+            console.log(result)
+            if (result.message) {
+                toast.error(result.message);
+            }
+            else {
+                setFirstName(result.firstName);
+                setLastName(result.lastName);
+                setEmail(result.email);
+                setCountry(result.country);
+                setLatOrigin(parseFloat(result.lat));
+                setLngOrigin(parseFloat(result.lng));
+                setCoordinatesLoaded(true);
+            }
         };
 
         getAccountInfos();

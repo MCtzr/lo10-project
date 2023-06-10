@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { useState, useRef, useContext } from 'react';
 import CredentialGlobal from '../../../components/Credentials/CredentialGlobal';
 import ExpressService from '../../../services/expressService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ComposantConnexion() {
 
@@ -33,9 +35,15 @@ function ComposantConnexion() {
         await expressService.verifyId(formData)
             .then((token) => {
                 // Mise à jour du token à l'aide de la fonction updateToken du contexte
-                updateToken(token);
-                updateCredential(formData.userId)
-                history.push(`/artMatch/musees`);
+                if (token.message) {
+                    toast.error(token.message);
+                }
+                else {
+                    updateToken(token);
+                    updateCredential(formData.userId)
+                    history.push(`/artMatch/musees`);
+                }
+
             })
             .catch((error) => {
                 console.error(error);
