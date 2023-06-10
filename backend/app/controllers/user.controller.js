@@ -5,7 +5,7 @@ const User = db.users;
 const Op = db.Sequelize.Op;
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 1800 });
